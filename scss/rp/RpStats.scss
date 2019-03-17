@@ -1,0 +1,136 @@
+$rpwidth: 250px;
+
+.rp_stats {
+    position: absolute;
+    top: 45px;
+    left: 10px;
+    color: #fff;
+    width: $rpwidth;
+    .box {
+        position: relative;
+        background-color: rgba(31, 31, 31, .8);
+        border: 2px solid rgba(255, 255, 255, .2);
+        box-shadow: 2px 2px 1px #000;
+        border-radius: 3px;
+        width: 100%;
+        height: 30px;
+        line-height: 27px;
+        padding-left: 5px;
+        &::after {
+            content: '';
+            position: absolute;
+            top: -1px;
+            right: -3px;
+            min-width: 29px;
+            min-height: 29px;
+            background-color: #875989;
+            border: 2px solid #ba7cc2;
+            border-radius: 5px;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+    }
+    .rp_stat {
+        display: block;
+        float: left;
+        margin-bottom: 10px;
+        margin-right: 10px;
+    }
+    .vie::after {
+        background-color: rgba(255, 255, 255, 0);
+        border-color: rgba(255, 255, 255, 0);
+    }
+    .energy::after {
+        background-color: rgba(255, 255, 255, 0);
+        border-color: rgba(255, 255, 255, 0);
+    }
+    .argent {
+        width: ($rpwidth / 2) - 20px;
+        &::after {
+            @include sprite($dollar);
+        }
+    }
+    .balle {
+        width: ($rpwidth / 4);
+        &::after {
+            @include sprite($munition);
+        }
+    }
+    .level {
+        margin-right: 0;
+        width: ($rpwidth / 4);
+        &::after {
+            @include sprite($level);
+        }
+    }
+    .heure {
+        margin-right: 0;
+        width: 70px;
+        &::after {
+            @include sprite($heure);
+        }
+    }
+    .energy_fond {
+        background-color: rgba(0, 0, 0, 0);
+    }
+    .energy_pourcent {
+        background-color: #e2ce00;
+        box-shadow: 0px -3px 1px #bfa700 inset;
+        border: 1px solid #b9a700;
+    }
+    .vie_fond {
+        //background-color: rgb(194, 0, 0);
+    }
+    .vie_pourcent {
+        background-color: rgb(24, 209, 0);
+        box-shadow: 0px -3px 1px rgb(0, 189, 72) inset;
+        border: 1px solid rgb(40, 110, 0);
+    }
+    .rp_barre {
+        margin-bottom: 10px;
+        .barre_fond {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        .barre_pourcent {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            transition: width 1s ease-in-out;
+        }
+        .barre_text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            text-align: center;
+        }
+    }
+    .sac_inventory {
+        cursor: pointer;
+        @include sprite($sac_inventory);
+        &:hover {
+            filter:brightness(80%);
+        }
+        &:active {
+            filter:blur(0.5px);
+        }
+    }
+    .buy_wibbopoint {
+        cursor: pointer;
+        margin-top: 4px;
+        @include sprite($wibbopoint);
+        &:hover {
+            filter:brightness(80%);
+        }
+        &:active {
+            filter:blur(0.5px);
+        }
+    }
+}

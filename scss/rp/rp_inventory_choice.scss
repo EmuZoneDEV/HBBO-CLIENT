@@ -1,0 +1,73 @@
+.rp_inventory_choice {
+    z-index: 99;
+    width: 180px;
+    .col_btn {
+        width: 45%;
+        margin-right: 2.5%;
+        margin-left: 2.5%;
+        float: left;
+    }
+    h1 {
+        font-size: 1.2em;
+        text-align: center;
+    }
+    b {
+        font-weight: 900;
+    }
+    p {
+        margin: 3px;
+        padding-left: 4px;
+    }
+    .preview_item {
+        position: relative;
+        width: auto;
+        height: 60px;
+        border: 2px solid #d4d4d4;
+        border-radius: 10%;
+        background-color: #ffffff;
+        margin: 5px;
+    }
+    .item {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        max-width: 40px;
+        max-height: 40px;
+    }
+    .count_item {
+        width: 27px;
+			border-radius: 5px;
+			border: 1px solid #c5c5c5;
+			padding: 5px;
+			&:focus {
+				outline: none;
+			}
+    }
+    .red {
+        color: #ffffff;
+        background-image: -webkit-linear-gradient(#ff0000 50%, #a00000 0);
+        box-shadow: inset 0 1px 0 #a00000, inset 1px 0 #a00000, inset -1px 0 #a00000, 0 1px 0 #000;
+        &:hover {
+            background-image: -webkit-linear-gradient(#ff0000 50%, #c70000 0);
+            box-shadow: inset 0 1px 0 #c70000, inset 1px 0 #c70000, inset -1px 0 #c70000, 0 1px 0 #000;
+        }
+        &:active {
+            background-image: -webkit-linear-gradient(#a00000 50%, #ff0000 0);
+            box-shadow: inset 0 1px 0 #ff0000, inset 1px 0 #ff0000, inset -1px 0 #ff0000, 0 1px 0 #000;
+        }
+    }
+    .green {
+        color: #ffffff;
+        background-image: -webkit-linear-gradient(#00cc1b 50%, #059c00 0);
+        box-shadow: inset 0 1px 0 #059c00, inset 1px 0 #059c00, inset -1px 0 #059c00, 0 1px 0 #000;
+        &:hover {
+            background-image: -webkit-linear-gradient(#00cc1b 50%, #06c000 0);
+            box-shadow: inset 0 1px 0 #06c000, inset 1px 0 #06c000, inset -1px 0 #06c000, 0 1px 0 #000;
+        }
+        &:active {
+            background-image: -webkit-linear-gradient(#059c00 50%, #00cc1b 0);
+            box-shadow: inset 0 1px 0 #00cc1b, inset 1px 0 #00cc1b, inset -1px 0 #00cc1b, 0 1px 0 #000;
+        }
+    }
+}

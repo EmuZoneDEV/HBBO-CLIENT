@@ -1,0 +1,83 @@
+@import 'sprite.scss';
+@import 'Animate.scss';
+@import 'box/Box.scss';
+@import 'box/notif_alert.scss';
+@import 'rp/RpStats.scss';
+@import 'rp/rp_buyitems.scss';
+@import 'rp/rp_inventory_choice.scss';
+@import 'rp/rp_inventory.scss';
+@import 'gui/RoomOptions.scss';
+@import 'gui/Options.scss';
+//@import 'gui/MenuLeft.scss';
+@import 'gui/NotifTop.scss';
+@import 'tool/WibboTool.scss';
+@import 'tool/WibboToolWindows.scss';
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+    font-family: Ubuntu, "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+    background-color: #0e151c;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+#infobulle {
+    display: none;
+    position: absolute;
+    border-radius: 7px;
+    z-index: 1;
+    padding: 1px 5px;
+    color: #fff;
+    line-height: 22px;
+    background-color: #1f1f1f;
+}
+
+#flash-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    #content {
+        max-width: 380px;
+        margin: 0 auto;
+        margin: 200px auto 0 auto;
+    }
+    a {
+        color: #fff;
+        cursor: pointer;
+        outline: 0;
+        text-decoration: none;
+    }
+    p {
+        color: #7ecaee;
+        font-size: 1.4em;
+    }
+    .title {
+        text-align: center;
+        color: #fff;
+        font-size: 2.5em;
+        line-height: 1.2;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-shadow: 0 1px rgba(0, 0, 0, .3);
+    }
+    .center_text {
+        text-align: center;
+    }
+    .getadobe {
+        display: inline-block;
+        margin: 12px 12px 0;
+        @include sprite($-get-flash-player);
+    }
+}

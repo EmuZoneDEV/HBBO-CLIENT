@@ -1,0 +1,69 @@
+$widght: 163px;
+$height: 40px;
+
+#roomoptions {
+    position: absolute;
+    bottom: 240px;
+    left: 0;
+    width: $widght;
+    height: $height;
+    .options_head {
+        position: relative;
+        float: left;
+        width: 13px;
+        height: 100%;
+        background-color: #3a3832;
+        border-top-right-radius: 7px;
+        border-bottom-right-radius: 7px;
+        cursor: pointer;
+    }
+    .arrowright {
+        position: absolute;
+        top: 50%;
+        left: 4px;
+        transform: translateY(-50%);
+        @include sprite($arrowright);
+    }
+    .arrowleft {
+        position: absolute;
+        top: 50%;
+        left: 4px;
+        transform: translateY(-50%);
+        @include sprite($arrowleft);
+    }
+    .options_panel {
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        float: left;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        padding: 10px;
+        margin-left: -16px;
+        padding-left: 26px;
+        background-color: rgba(31, 31, 31, 0.8);
+        border-top-right-radius: 7px;
+        border-bottom-right-radius: 7px;
+        color: #ffffff;
+        .settings {
+            text-decoration: underline;
+            cursor: pointer;
+            line-height: 22px;
+            color: #9a9a99;
+            white-space: nowrap;
+            margin-bottom: 2px;
+            &::before {
+                content: '';
+                float: left;
+                margin-right: 11px;
+                @include sprite($panel_settings);
+            }
+            &:hover:before {
+                @include sprite($panel_settings_hover);
+            }
+            &:active:before {
+                @include sprite($panel_settings_active);
+            }
+        }
+    }
+}
