@@ -122,15 +122,4 @@ $rpwidth: 250px;
             filter:blur(0.5px);
         }
     }
-    .buy_wibbopoint {
-        cursor: pointer;
-        margin-top: 4px;
-        @include sprite($wibbopoint);
-        &:hover {
-            filter:brightness(80%);
-        }
-        &:active {
-            filter:blur(0.5px);
-        }
-    }
 }
