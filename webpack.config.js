@@ -11,8 +11,6 @@ const Production = true;
 
 const SpritesmithPlugin = require('webpack-spritesmith');
 
-const cache = new Date().getTime();
-
 let config = {
   module: {
     rules: [{
@@ -92,11 +90,11 @@ let config = {
         glob: '*.png'
       },
       target: {
-        image: path.resolve(__dirname, "scss/sprite_" + cache + ".png"),
+        image: path.resolve(__dirname, "scss/sprite.png"),
         css: path.resolve(__dirname, "scss/sprite.scss")
       },
       apiOptions: {
-        cssImageRef: "sprite_" + cache + ".png"
+        cssImageRef: "sprite.png"
       }
     }),
     new webpack.DefinePlugin({

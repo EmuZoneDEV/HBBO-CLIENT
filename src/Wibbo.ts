@@ -13,6 +13,7 @@ import GetRequest from './util/GetRequest';
 
 export default class Wibbo {
 
+    //private static _roomManager;
     private static _websocketManager: WebSocketManager | null;
     private static _packetManager: PacketManager;
     private static _interfaceManager: InterfaceManager;
