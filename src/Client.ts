@@ -52,6 +52,33 @@ export default class Client {
         };
 
         swfobject.embedSWF(client.R_64 + client.swf, "flash-container", "100%", "100%", "11.1.0", client.UrlWibbo + "/flash/expressInstall.swf", flashvars, params, null, null);
+
+        //Copyright Flo on holo.ws
+        var isNewEdge = parseInt((navigator.userAgent.match(/Edge\/(\d+)/) || [])[1]) > 14;
+        var isNewSafari = parseInt((navigator.userAgent.match(/OS X (\d+)/) || [])[1]) > 9;
+        var isNewChrome = parseInt((navigator.userAgent.match(/Chrom(e|ium)\/(\d+)/) || [])[2]) > 56 && !/Mobile/i.test(navigator.userAgent);
+
+        var canRequestPermission = isNewEdge || isNewSafari || isNewChrome;
+
+        if (!swfobject.hasFlashPlayerVersion('10') && canRequestPermission){
+            //var refreshFlashPlayer = document.createElement('div');
+            //refreshFlashPlayer.innerHTML = '<meta http-equiv="refresh" content="0;URL=http://www.macromedia.com/go/getflashplayer">';
+            //document.body.appendChild(refreshFlashPlayer);
+
+            let getAdobe = document.getElementById("getadobe");
+            if(getAdobe == null)
+                return;
+
+            if(getAdobe.click)
+                getAdobe.click();
+            else if(document.createEvent)
+            {
+                var eventObj = document.createEvent('MouseEvents');
+                eventObj.initEvent('click', true, true);
+                getAdobe.dispatchEvent(eventObj);
+            }
+        }
+
     }).catch(function (error: string) {
         console.log("[getclientconfig] Error: " + error);
       });

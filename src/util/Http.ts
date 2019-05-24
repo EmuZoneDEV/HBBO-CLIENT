@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 function getRootUrl() {
-	return window.location.origin?window.location.origin+'/':window.location.protocol+'/'+window.location.host+'/';
+	return window.location.origin ? window.location.origin +'/' : window.location.protocol + '/' + window.location.host + '/';
 }
 
 

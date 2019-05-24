@@ -11,7 +11,7 @@ export default Vue.component('youtube-player', {
 
     template: `
             <div class="box_body" style="border: none;background-color: #000;" v-if="data.youtube_edit_mode == false && data.youtube_open == true">
-                <iframe width="560" height="315" :src="'https://www.youtube.com/embed/' + data.youtube_videoid + '?autoplay=1'" frameborder="0" allowfullscreen></iframe>
+                <iframe width="560" height="315" :src="'https://www.youtube.com/embed/' + data.youtube_videoid + '?autoplay=1'" allow="autoplay" frameborder="0" allowfullscreen></iframe>
             </div>
             `
 });
