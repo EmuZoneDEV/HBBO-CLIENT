@@ -3,7 +3,7 @@ import Logger from '../util/Logger';
 import { SoundType } from './SoundType';
 
 export default class SoundManager {
-    private _tracks: Sound[];
+    private _tracks: { id: number, sound: Sound }[];
     private _volume: number[];
 
     constructor() {
@@ -18,13 +18,13 @@ export default class SoundManager {
         this._volume[2] = trax;
 
         for(let track of this._tracks) {
-            track.volume = this._getVolume(track.type);
+            track.sound.volume = this._getVolume(track.sound.type);
         }
     }
 
     private _getId(): number {
         for (var i: number = 0; i < this._tracks.length; i++) {
-            if(this._tracks.hasOwnProperty(i))
+            if(this._tracks.filter(x => x.id === i).length > 0)
                 continue;
 
             return i;
@@ -47,14 +47,14 @@ export default class SoundManager {
     }
 
     public playSound(url: string, type: SoundType) {
-        let id = this._getId();
-        let newSound = new Sound(id, url, type);
-        this._tracks[id] = newSound;
+        let Id: number = this._getId();
+        let newSound = new Sound(Id, url, type);
+        this._tracks.push({ id: Id, sound: newSound });
 
         newSound.play();
         newSound.volume = this._getVolume(type);
 
-        Logger.Log("Play Sound: " + id);
+        Logger.Log("Play Sound: " + Id);
     }
 
     public playSoundLib(name: string, type: SoundType) {
@@ -67,16 +67,24 @@ export default class SoundManager {
 
     public stopSound() {
         for(let track of this._tracks) {
-            track.stop();
+            track.sound.stop();
         }
     }
 
     public endSound(id: number) {
         Logger.Log("End Sound: " + id);
 
-        if(!this._tracks.hasOwnProperty(id))
+        let track = this._tracks.filter(x => x.id === id);
+        if (track.length == 0)
             return;
 
-        this._tracks.splice(id, 1);
+        for (let i = 0; i < this._tracks.length ; i++) {
+            if(this._tracks[i].id == id) {
+                this._tracks.splice(i, 1);
+                break;
+            }
+        }
+
+        console.log(this._tracks);
     }
 }
