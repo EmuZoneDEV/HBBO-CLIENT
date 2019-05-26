@@ -41,6 +41,10 @@ export default class WebSocketManager {
         Logger.Log("WebSocket Error");
     }
 
+    public close() {
+        this._webSocket.close();
+    }
+
     public SendPacket(message: ServerPacket) {
         if (this._webSocket.readyState != WebSocket.OPEN)
             return;

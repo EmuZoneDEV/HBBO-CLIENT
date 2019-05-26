@@ -25,12 +25,13 @@ document.addEventListener("visibilitychange", function() {
   }
 });
 
-var Id: string = GetRequest("id");
-var WSUrl: string = "";
+let Id: string = GetRequest("id");
+let WSUrl: string = "";
+let UserId = 0;
 
-declare var roomId: number;
+declare let roomId: number;
 
-var CustumeId: string = Id == "" ? "" : "?id=" + Id;
+let CustumeId: string = Id == "" ? "" : "?id=" + Id;
 
 Http.get("getclientdata" + CustumeId)
   .then(function(response: any) {
@@ -41,6 +42,7 @@ Http.get("getclientdata" + CustumeId)
 
     let SSOTicket: string = response.data.SSOTicket;
     WSUrl = response.data.WSUrl;
+    UserId = response.data.id;
 
     new Client(SSOTicket, roomId);
   })
@@ -66,7 +68,7 @@ window.FlashExternalInterface = {
 
 window.FlashExternalInterface.listPlugins = function() {
   let txt: string = "";
-  for (var i = 0; i < navigator.plugins.length; i++) {
+  for (let i = 0; i < navigator.plugins.length; i++) {
     txt += navigator.plugins[i].name + "|";
   }
 
@@ -81,6 +83,6 @@ window.FlashExternalInterface.legacyTrack = function(
   console.log("legacyTrack: " + arg1);
 
   if (arg1 == "authentication") {
-    Wibbo.Init(WSUrl);
+    Wibbo.Init(UserId, WSUrl);
   }
 };

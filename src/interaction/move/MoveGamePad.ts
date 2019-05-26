@@ -21,8 +21,8 @@ export default class MoveGamePad {
     this._left = false;
     this._right = false;
 
-    window.addEventListener("gamepadconnected", this.connecthandler.bind(this));
-    window.addEventListener("gamepaddisconnected", this.disconnecthandler.bind(this));
+    (<any>window).addEventListener("gamepadconnected", this.connecthandler.bind(this));
+    (<any>window).addEventListener("gamepaddisconnected", this.disconnecthandler.bind(this));
     setInterval(this.scangamepads, 1000);
     setInterval(this.CheckDirection.bind(this), 250);
   }
@@ -46,10 +46,12 @@ export default class MoveGamePad {
     }
   }
 
-  private connecthandler(e: GamepadEvent) {
-    this.addgamepad(e.gamepad);
+  private connecthandler(evt: GamepadEvent): void {
+
+    this.addgamepad(evt.gamepad);
   }
-  private addgamepad(gamepad: Gamepad) {
+
+  private addgamepad(gamepad: Gamepad): void {
     this.controllers[gamepad.index] = gamepad;
 
     console.log("Ajout Gamepad");
@@ -57,7 +59,7 @@ export default class MoveGamePad {
     requestAnimationFrame(this.updateStatus.bind(this));
   }
 
-  private disconnecthandler(e: GamepadEvent) {
+  private disconnecthandler(e: GamepadEvent): void {
     this.removegamepad(e.gamepad);
   }
 
@@ -81,10 +83,10 @@ export default class MoveGamePad {
       let controller = this.controllers[j];
       if (controller == null) continue;
 
-      for (var i = 0; i < controller.buttons.length; i++) {
-        var btnval = controller.buttons[i];
-        var pressed = btnval.value == 1.0;
-        var val = 0;
+      for (let i = 0; i < controller.buttons.length; i++) {
+        let btnval = controller.buttons[i];
+        let pressed = btnval.value == 1.0;
+        let val = 0;
 
         if (typeof btnval == "object") {
           pressed = btnval.pressed;
@@ -101,7 +103,7 @@ export default class MoveGamePad {
         }
       }
 
-      for (var i = 0; i < controller.axes.length; i++) {
+      for (let i = 0; i < controller.axes.length; i++) {
         if (i == 0 || i == 2) {
           //Droite Gauche
           if (controller.axes[i] > 0.1) {

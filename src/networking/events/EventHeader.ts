@@ -18,6 +18,7 @@ enum EventHeader {
     RpTrocUpdateItems = 17,
     NotifTop = 18,
     NotifTopInit = 19,
+    SettingVolume = 20,
 }
 
 export default EventHeader;

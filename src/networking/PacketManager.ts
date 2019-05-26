@@ -6,21 +6,22 @@ import EventHeader from "./events/EventHeader";
 
 import AuthenticationOKEvent from "./events/handshake/AuthenticationOKEvent";
 import UserIsStaffEvent from "./events/handshake/UserIsStaffEvent";
-import YoutubeTvEvent from "./events/tvyoutube/YoutubeTvEvent";
+import SettingVolumeEvent from "./events/handshake/SettingVolumeEvent";
 import PongEvent from "./events/handshake/PongEvent";
 import InRoomEvent from "./events/handshake/InRoomEvent";
-import RpStatsEvent from "./events/roleplay/RpStatsEvent";
+import YoutubeTvEvent from "./events/tvyoutube/YoutubeTvEvent";
 import AddChatlogsEvent from "./events/wibbotool/AddChatlogsEvent";
+import RpStatsEvent from "./events/roleplay/RpStatsEvent";
 import BuyItemsListEvent from "./events/roleplay/BuyItemsListEvent";
 import LoadInventoryRpEvent from "./events/roleplay/LoadInventoryRpEvent";
 import AddInventoryItemRpEvent from "./events/roleplay/AddInventoryItemRpEvent";
 import RemoveItemInventoryRpEvent from "./events/roleplay/RemoveItemInventoryRpEvent";
-import NotifAlertEvent from "./events/notif/NotifAlertEvent";
 import RpTrocStartEvent from "./events/troc/RpTrocStartEvent";
 import RpTrocStopEvent from "./events/troc/RpTrocStopEvent";
 import RpTrocAccepteEvent from "./events/troc/RpTrocAccepteEvent";
 import RpTrocConfirmeEvent from "./events/troc/RpTrocConfirmeEvent";
 import RpTrocUpdateItemsEvent from "./events/troc/RpTrocUpdateItemsEvent";
+import NotifAlertEvent from "./events/notif/NotifAlertEvent";
 import NotifTopEvent from "./events/notif/NotifTopEvent";
 import NotifTopInitEvent from "./events/notif/NotifTopInitEvent";
 
@@ -44,6 +45,7 @@ export default class PacketManager {
         this._incomingPackets[EventHeader.NotifAlert] = new NotifAlertEvent();
         this._incomingPackets[EventHeader.NotifTop] = new NotifTopEvent();
         this._incomingPackets[EventHeader.NotifTopInit] = new NotifTopInitEvent();
+        this._incomingPackets[EventHeader.SettingVolume] = new SettingVolumeEvent();
         
         this._incomingPackets[EventHeader.RpStats] = new RpStatsEvent();
         this._incomingPackets[EventHeader.BuyItemsList] = new BuyItemsListEvent();
@@ -61,7 +63,7 @@ export default class PacketManager {
 
         let Byte: Uint8Array = new Uint8Array(data);
 
-        var Message: ClientPacket = new ClientPacket(Byte);
+        let Message: ClientPacket = new ClientPacket(Byte);
 
         let LengthMessage: number = Message.PopInt(); //Decode INT32
         if(LengthMessage == 0 || LengthMessage > 999999)

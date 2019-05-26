@@ -24,8 +24,8 @@ export default Vue.component('fullscreen', {
 
     methods: {
         toggleFullScreen: function () {
-            var document:any = window.document;
-            let elem:any = document.body;
+            let document: any = window.document;
+            let elem: any = document.body;
 
             if (!document.fullscreenElement && !document.msFullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement) {
                  if (elem.requestFullscreen) {

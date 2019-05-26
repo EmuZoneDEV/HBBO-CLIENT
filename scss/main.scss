@@ -1,17 +1,17 @@
 @import 'sprite.scss';
-@import 'Animate.scss';
-@import 'box/Box.scss';
+@import 'animate.scss';
+@import 'box/box.scss';
 @import 'box/notif_alert.scss';
-@import 'rp/RpStats.scss';
+@import 'rp/rp_stats.scss';
 @import 'rp/rp_buyitems.scss';
 @import 'rp/rp_inventory_choice.scss';
 @import 'rp/rp_inventory.scss';
-@import 'gui/RoomOptions.scss';
-@import 'gui/Options.scss';
-//@import 'gui/MenuLeft.scss';
-@import 'gui/NotifTop.scss';
-@import 'tool/WibboTool.scss';
-@import 'tool/WibboToolWindows.scss';
+@import 'gui/room_options.scss';
+@import 'gui/options.scss';
+//@import 'gui/menu_left.scss';
+@import 'gui/notif_top.scss';
+@import 'tool/wibbotool.scss';
+@import 'tool/wibbotool_windows.scss';
 
 *,
 *::after,

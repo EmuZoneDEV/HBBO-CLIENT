@@ -16,7 +16,7 @@ export default class RemoveItemInventoryRpEvent implements IPacketEvent {
         Item.count -= Count;
 
         if (Item.count == 0) {
-            for (var i = 0; i < Wibbo.GetStore().rp_inventory.length; i++)
+            for (let i = 0; i < Wibbo.GetStore().rp_inventory.length; i++)
                 if (Wibbo.GetStore().rp_inventory[i].id === ItemId) {
                     Wibbo.GetStore().rp_inventory.splice(i, 1);
                     break;

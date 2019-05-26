@@ -36,7 +36,6 @@ export default Vue.component('notifalert', {
     methods: {
         Close: function () {
             Wibbo.GetTimeoutManager().CloseNotifAlert(true);
-            
         },
         JoinRoom: function () {
             if(Wibbo.GetStore().notif_alert_url == "")

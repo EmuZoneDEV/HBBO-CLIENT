@@ -15,6 +15,8 @@ export default class NotifAlertEvent implements IPacketEvent {
 
         if(Wibbo.GetStore().notif_alert_url == "")
             Wibbo.GetTimeoutManager().CloseNotifAlert();
+
+        Wibbo.GetSoundManager().playSoundTrack(20);
     }
 
 }
