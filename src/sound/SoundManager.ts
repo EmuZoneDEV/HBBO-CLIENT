@@ -57,6 +57,10 @@ export default class SoundManager {
         Logger.Log("Play Sound: " + id);
     }
 
+    public playSoundLib(name: string, type: SoundType) {
+        this.playSound("./sounds/" + name + ".mp3", type);
+    }
+
     public playSoundTrack(num: number) {
         this.playSound("https://swf.wibbo.me/dcr/dcr/hof_furni2/mp3/sound_machine_sample_" + num + ".mp3", SoundType.TRAX);
     }

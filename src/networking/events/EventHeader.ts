@@ -19,6 +19,7 @@ enum EventHeader {
     NotifTop = 18,
     NotifTopInit = 19,
     SettingVolume = 20,
+    PlaySound = 21,
 }
 
 export default EventHeader;

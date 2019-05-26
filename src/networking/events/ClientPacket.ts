@@ -26,7 +26,7 @@ export default class ClientPacket {
         let len: number = this.PopShort();
         let bytes: Uint8Array = this.ReadBytes(len);
 
-        let Value: string = String.fromCharCode.apply(null, bytes);
+        let Value: string = String.fromCharCode.apply(null, <any>bytes);
         try {
             Value = decodeURIComponent(escape(Value));
         } catch{}

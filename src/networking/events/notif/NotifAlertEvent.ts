@@ -1,6 +1,7 @@
 import IPacketEvent from '../IPacketEvent';
 import ClientPacket from '../ClientPacket';
 import Wibbo from '../../../Wibbo';
+import { SoundType } from '../../../sound/SoundType';
 
 export default class NotifAlertEvent implements IPacketEvent {
 
@@ -16,7 +17,7 @@ export default class NotifAlertEvent implements IPacketEvent {
         if(Wibbo.GetStore().notif_alert_url == "")
             Wibbo.GetTimeoutManager().CloseNotifAlert();
 
-        Wibbo.GetSoundManager().playSoundTrack(20);
+        Wibbo.GetSoundManager().playSoundLib("animation_warn", SoundType.SYSTEME);
     }
 
 }

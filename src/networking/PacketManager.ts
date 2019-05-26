@@ -9,6 +9,7 @@ import UserIsStaffEvent from "./events/handshake/UserIsStaffEvent";
 import SettingVolumeEvent from "./events/handshake/SettingVolumeEvent";
 import PongEvent from "./events/handshake/PongEvent";
 import InRoomEvent from "./events/handshake/InRoomEvent";
+import PlaySoundEvent from "./events/handshake/PlaySoundEvent";
 import YoutubeTvEvent from "./events/tvyoutube/YoutubeTvEvent";
 import AddChatlogsEvent from "./events/wibbotool/AddChatlogsEvent";
 import RpStatsEvent from "./events/roleplay/RpStatsEvent";
@@ -46,6 +47,7 @@ export default class PacketManager {
         this._incomingPackets[EventHeader.NotifTop] = new NotifTopEvent();
         this._incomingPackets[EventHeader.NotifTopInit] = new NotifTopInitEvent();
         this._incomingPackets[EventHeader.SettingVolume] = new SettingVolumeEvent();
+        this._incomingPackets[EventHeader.PlaySound] = new PlaySoundEvent();
         
         this._incomingPackets[EventHeader.RpStats] = new RpStatsEvent();
         this._incomingPackets[EventHeader.BuyItemsList] = new BuyItemsListEvent();
