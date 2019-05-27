@@ -1,5 +1,7 @@
-export enum SoundType {
+enum SoundType {
     SYSTEME,
     FURNI,
     TRAX,
 }
+
+export default SoundType;

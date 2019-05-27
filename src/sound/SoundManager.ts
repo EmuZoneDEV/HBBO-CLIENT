@@ -1,6 +1,6 @@
 import Sound from './Sound';
 import Logger from '../util/Logger';
-import { SoundType } from './SoundType';
+import SoundType from './SoundType';
 
 export default class SoundManager {
     private _tracks: { id: number, sound: Sound }[];
@@ -23,8 +23,8 @@ export default class SoundManager {
     }
 
     private _getId(): number {
-        for (var i: number = 0; i < this._tracks.length; i++) {
-            if(this._tracks.filter(x => x.id === i).length > 0)
+        for (var i = 0; i < this._tracks.length; i++) {
+            if(this._tracks.filter(x => x.id === i).length != 0)
                 continue;
 
             return i;
@@ -46,9 +46,9 @@ export default class SoundManager {
         return 1;
     }
 
-    public playSound(url: string, type: SoundType) {
+    public playSound(name: string, type: SoundType, loop: boolean) {
         let Id: number = this._getId();
-        let newSound = new Sound(Id, url, type);
+        let newSound = new Sound(Id, name, type, loop);
         this._tracks.push({ id: Id, sound: newSound });
 
         newSound.play();
@@ -57,26 +57,31 @@ export default class SoundManager {
         Logger.Log("Play Sound: " + Id);
     }
 
-    public playSoundLib(name: string, type: SoundType) {
-        this.playSound("./sounds/" + name + ".mp3", type);
-    }
+    public stopSound(name?: string) {
+        if(this._tracks.length == 0)
+            return;
 
-    public playSoundTrack(num: number) {
-        this.playSound("https://swf.wibbo.me/dcr/dcr/hof_furni2/mp3/sound_machine_sample_" + num + ".mp3", SoundType.TRAX);
-    }
+        Logger.Log("Stop count: " + this._tracks.length);
 
-    public stopSound() {
+        let deleteTrack = Array();
         for(let track of this._tracks) {
+            if(name && name != track.sound.name)
+                continue;
+                
+            deleteTrack.push(track);
+        }
+
+        for(let track of deleteTrack) {
             track.sound.stop();
         }
+
+        deleteTrack.splice(0, deleteTrack.length); //Clean
     }
 
     public endSound(id: number) {
-        Logger.Log("End Sound: " + id);
-
         let track = this._tracks.filter(x => x.id === id);
         if (track.length == 0)
-            return;
+           return;
 
         for (let i = 0; i < this._tracks.length ; i++) {
             if(this._tracks[i].id == id) {
@@ -84,7 +89,5 @@ export default class SoundManager {
                 break;
             }
         }
-
-        console.log(this._tracks);
     }
 }

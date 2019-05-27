@@ -6,10 +6,11 @@ import EventHeader from "./events/EventHeader";
 
 import AuthenticationOKEvent from "./events/handshake/AuthenticationOKEvent";
 import UserIsStaffEvent from "./events/handshake/UserIsStaffEvent";
-import SettingVolumeEvent from "./events/handshake/SettingVolumeEvent";
 import PongEvent from "./events/handshake/PongEvent";
 import InRoomEvent from "./events/handshake/InRoomEvent";
-import PlaySoundEvent from "./events/handshake/PlaySoundEvent";
+import SettingVolumeEvent from "./events/sound/SettingVolumeEvent";
+import PlaySoundEvent from "./events/sound/PlaySoundEvent";
+import StopSoundEvent from "./events/sound/StopSoundEvent";
 import YoutubeTvEvent from "./events/tvyoutube/YoutubeTvEvent";
 import AddChatlogsEvent from "./events/wibbotool/AddChatlogsEvent";
 import RpStatsEvent from "./events/roleplay/RpStatsEvent";
@@ -46,8 +47,10 @@ export default class PacketManager {
         this._incomingPackets[EventHeader.NotifAlert] = new NotifAlertEvent();
         this._incomingPackets[EventHeader.NotifTop] = new NotifTopEvent();
         this._incomingPackets[EventHeader.NotifTopInit] = new NotifTopInitEvent();
+
         this._incomingPackets[EventHeader.SettingVolume] = new SettingVolumeEvent();
         this._incomingPackets[EventHeader.PlaySound] = new PlaySoundEvent();
+        this._incomingPackets[EventHeader.StopSound] = new StopSoundEvent();
         
         this._incomingPackets[EventHeader.RpStats] = new RpStatsEvent();
         this._incomingPackets[EventHeader.BuyItemsList] = new BuyItemsListEvent();

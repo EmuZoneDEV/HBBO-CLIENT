@@ -1,21 +1,27 @@
 import Wibbo from '../Wibbo';
-import { SoundType } from './SoundType';
+import SoundType from './SoundType';
 
 export default class Sound {
     private _id: number;
+    private _name: string;
 
     private _instance: HTMLAudioElement;
     private _loop: boolean;
     private _volume: number;
     private _type: SoundType;
 
-    constructor(id: number, url: string, type: SoundType) {
+    constructor(id: number, name: string, type: SoundType, loop: boolean) {
         this._id = id;
+        this._name = name;
 
-        this._instance = new Audio(url);
-        this._loop = false;
+        this._instance = new Audio("./sounds/" + name + ".mp3");
+        this._loop = loop;
         this._volume = 1;
         this._type = type;
+    }
+
+    public get name() {
+        return this._name;
     }
 
     public set type(value: SoundType) {

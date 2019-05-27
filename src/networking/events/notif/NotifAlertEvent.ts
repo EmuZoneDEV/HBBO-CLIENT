@@ -1,7 +1,7 @@
 import IPacketEvent from '../IPacketEvent';
 import ClientPacket from '../ClientPacket';
 import Wibbo from '../../../Wibbo';
-import { SoundType } from '../../../sound/SoundType';
+import SoundType from '../../../sound/SoundType';
 
 export default class NotifAlertEvent implements IPacketEvent {
 
@@ -17,7 +17,8 @@ export default class NotifAlertEvent implements IPacketEvent {
         if(Wibbo.GetStore().notif_alert_url == "")
             Wibbo.GetTimeoutManager().CloseNotifAlert();
 
-        Wibbo.GetSoundManager().playSoundLib("animation_warn", SoundType.SYSTEME);
+        if(Wibbo.GetStore().notif_alert_roomid > 0)
+            Wibbo.GetSoundManager().playSound("animation_warn", SoundType.SYSTEME, false);
     }
 
 }
