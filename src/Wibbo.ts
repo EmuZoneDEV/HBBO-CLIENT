@@ -73,6 +73,7 @@ export default class Wibbo {
     public static OnDisconnect(): void {
         clearInterval(Wibbo._pingInterval);
         Wibbo.GetStore().connected = false;
+        Wibbo.GetSoundManager().stopSound();
 
         setTimeout(Wibbo.TryReconnect, 30 * 1000);
     }

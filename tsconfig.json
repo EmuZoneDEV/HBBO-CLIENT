@@ -11,5 +11,10 @@
   },
   "files":[
     "src/app.ts"
-  ]
+  ],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.vue",
+    "src/**/*.html"
+  ],
 }

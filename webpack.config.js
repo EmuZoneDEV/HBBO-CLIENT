@@ -24,6 +24,13 @@ let config = {
         }
       },
       {
+        test: /\.html$/,
+        loader: 'html-loader',
+        options: {
+            minimize: true
+        }
+      },
+      {
         test: /\.tsx?$/,
         use: 'ts-loader',
         exclude: /node_modules/

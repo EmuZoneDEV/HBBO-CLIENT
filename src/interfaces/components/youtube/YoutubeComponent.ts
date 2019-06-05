@@ -1,20 +1,10 @@
 import Vue from 'vue';
 import Wibbo from '../../../Wibbo';
+import Html from './html/Box.html';
 
-export default Vue.component('youtube-box', {
-    template: `
+export default Vue.extend({
 
-            <div v-show="data.youtube_open" class="box" v-bind:style="CenterBox" movebox>
-                <div class="box_head" v-draggable>
-                    <div class="box_edit" v-if="data.youtube_itemid != 0" v-on:click="Edit"></div>
-                    <div class="box_croix" v-on:click="Close"></div>
-                    Vidéo Youtube
-                </div>
-                
-                <slot></slot>
-		    </div>
-            
-            `,
+    template: Html,
 
     data: function () {
         return {

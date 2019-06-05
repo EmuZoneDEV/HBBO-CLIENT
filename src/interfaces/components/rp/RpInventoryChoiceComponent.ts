@@ -1,37 +1,11 @@
 import Vue from 'vue';
 import Wibbo from '../../../Wibbo';
 import RpUseItemComposer from '../../../networking/composers/roleplay/RpUseItemComposer';
+import Html from './html/RpInventoryChoice.html';
 
-export default Vue.component('rpbox-inventory-choice', {
-    template: `
-            <transition name="opacity">
-            <div class="box rp_inventory_choice" v-if="data.connected && data.rp_mode" v-show="data.rpbox_inventory_choice_open && data.in_room && data.rp_item_choice.count > 0" v-bind:style="CenterBox" movebox>
-            <div class="box_head" v-draggable>
-                <div class="box_croix" v-on:click="Close"></div>
-                    Validation
-                </div>
-                <div class="box_body">
-                    <h1 v-html="data.rp_item_choice.desc"></h1>
-                    <div class="preview_item">
-                        <img v-if="data.rp_item_choice.name != ''" v-bind:src="'items/' + data.rp_item_choice.name + '.png'" class="item">
-                    </div>
-                    <p>
-                        <b>Objet(s) restant(s):</b> {{data.rp_item_choice.count}}
-                    </p>
-                    <p v-if="data.rp_item_choice.usetype == 2">
-                        <b>Quantité à utiliser:</b> <input type="text" class="count_item" v-bind:value="usecount" v-on:input="SetCount($event)">
-                    </p>
-                    <div class="col_btn">
-                        <button type="button" class="box_button green" v-on:click="UseItem" v-if="data.rp_item_choice.usetype != 0">Utiliser</button>
-                        <button type="button" class="box_button disabled" v-on:click="UseItem" v-else>Utiliser</button>
-                    </div>
-                    <div class="col_btn">
-                        <button type="button" class="box_button red" v-on:click="Close">Annuler</button>
-                    </div>
-                </div>
-            </div>
-            </transition>
-            `,
+export default Vue.extend({
+    
+    template: Html,
 
     data: function () {
         return {

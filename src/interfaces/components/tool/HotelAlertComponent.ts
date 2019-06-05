@@ -1,24 +1,11 @@
 import Vue from 'vue';
 import Wibbo from '../../../Wibbo';
 import SendAlertComposer from '../../../networking/composers/wibbotool/SendAlertComposer';
+import Html from './html/Alert.html';
 
-export default Vue.component('wibbotool-hotelalert', {
-    template: `
-            <transition name="opacity">
-            <div v-if="data.wibbotool_hotelalert" class="wibbotool_windows">
-                <div class="title">Hotel alert</div>
-                <div id="contenue">
-                    <div class="help">Envoie une alert à tout l'hôtel</div>
-                    <textarea v-model="message" placeHolder="Écris ici ton texte..." maxlength="1000"></textarea>
-                    <input type="text" v-model="url" value="" placeHolder="Entre ici l'url du site"/><br />
-                    <div class="checkbox"><input type="checkbox" v-model="checked"><label for="alert">Alert d'animation</label></div>
-                    <div class="submit" v-on:click="SendMessage">Lancer</div><br />
-                    <div class="submit" v-on:click="Preview">Prévisualisation</div>
-                </div>
-            </div>
-            </transition>
-            
-            `,
+export default Vue.extend({
+
+    template: Html,
 
     data: function () {
         return {

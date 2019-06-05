@@ -1,19 +1,11 @@
 import Vue from 'vue';
 import Wibbo from '../../../Wibbo';
 import EditTvComposer from '../../../networking/composers/tvyoutube/EditTvComposer';
+import Html from './html/Edit.html';
 
-export default Vue.component('youtube-edit', {
-    template: `
+export default Vue.extend({
 
-            <div class="box_body" v-show="data.youtube_edit_mode">
-            <div class="box_form">
-            <input v-model="videoid" type="text" size="32" value="" :placeholder="'https://www.youtube.com/watch?v=' + data.youtube_videoid" class="box_input">
-              </span>
-				<button type="button" class="box_button" v-on:click="SendEdit">Editer</button>
-            </div>
-            </div>
-            
-            `,
+    template: Html,
 
     data: function () {
         return {

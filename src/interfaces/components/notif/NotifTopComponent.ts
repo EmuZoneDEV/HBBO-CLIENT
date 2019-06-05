@@ -1,18 +1,10 @@
 import Vue from 'vue';
 import Wibbo from '../../../Wibbo';
+import Html from './html/NotifTop.html';
 
-export default Vue.component('notiftop', {
-    template: `
+export default Vue.extend({
 
-            <transition name="slide-y">
-                <div class="notif_top" v-if="data.notif_top_open">
-                    <div class="croix" v-on:click="Close">×</div>
-                    <div class="notif_img"></div>
-                    <div class="message" v-html="GetNotif"></div>
-                </div>
-            </transition>
-            
-            `,
+    template: Html,
 
     data: function () {
         return {

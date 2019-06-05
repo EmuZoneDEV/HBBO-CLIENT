@@ -1,12 +1,10 @@
 import Vue from 'vue';
 import Wibbo from '../../../Wibbo';
+import Html from './html/InfoBulle.html';
 
-export default Vue.component('infobulle', {
-    template: `
-
-            <div v-if="data.connected && data.in_room" id="infobulle"></div>
-            
-            `,
+export default Vue.extend({
+    
+    template: Html,
 
     data: function () {
         return {

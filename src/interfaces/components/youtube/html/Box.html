@@ -1,0 +1,9 @@
+<div v-show="data.youtube_open" class="box" v-bind:style="CenterBox" movebox>
+    <div class="box_head" v-draggable>
+        <div class="box_edit" v-if="data.youtube_itemid != 0" v-on:click="Edit"></div>
+        <div class="box_croix" v-on:click="Close"></div>
+        Vidéo Youtube
+    </div>
+
+    <slot></slot>
+</div>

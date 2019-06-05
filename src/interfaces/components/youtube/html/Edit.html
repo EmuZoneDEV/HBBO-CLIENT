@@ -1,0 +1,6 @@
+<div class="box_body" v-show="data.youtube_edit_mode">
+    <div class="box_form">
+        <input v-model="videoid" type="text" size="32" value="" :placeholder="'https://www.youtube.com/watch?v=' + data.youtube_videoid" class="box_input">
+        <button type="button" class="box_button" v-on:click="SendEdit">Editer</button>
+    </div>
+</div>

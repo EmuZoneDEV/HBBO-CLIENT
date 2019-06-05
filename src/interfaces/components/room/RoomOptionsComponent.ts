@@ -1,22 +1,9 @@
 import Vue from 'vue';
 import Wibbo from '../../../Wibbo';
+import Html from './html/RoomOptions.html';
 
-export default Vue.component('room-options', {
-    template: `
-            
-            <div v-if="data.connected && data.in_room" id="roomoptions">
-            <div class="options_head" v-on:click="toggle">
-             <div v-show="is_open" class="arrowleft"></div>
-             <div v-show="!is_open" class="arrowright"></div>
-             </div>
-             <transition name="slide-x">
-                <div v-show="is_open" class="options_panel">
-                <div class="settings" v-infobulle="message_info" v-on:click="OpenSettings">Paramètres 2</div>
-                </div>
-             </transition>
-            </div>
-            
-            `,
+export default Vue.extend({
+    template: Html,
 
     data: function () {
         return {

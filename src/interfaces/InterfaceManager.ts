@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import OptionsComponent from './components/gui/OptionsComponent';
+import FullScreenComponent from './components/gui/FullScreenComponent';
 import YoutubeComponent from './components/youtube/YoutubeComponent';
 import YoutubEditTvComponent from './components/youtube/YoutubEditTvComponent';
 import YoutubePlayerComponent from './components/youtube/YoutubePlayerComponent';
@@ -37,27 +37,27 @@ export default class InterfaceManager {
     }
 
     private static RegisterComponents() {
-        OptionsComponent;
+        Vue.component('youtube-box', YoutubeComponent);
+        Vue.component('youtube-edit', YoutubEditTvComponent);
+        Vue.component('youtube-player', YoutubePlayerComponent);
 
-        YoutubeComponent;
-        YoutubEditTvComponent;
-        YoutubePlayerComponent;
+        Vue.component('wibbotool-hotelalert', HotelAlertComponent);
+        Vue.component('wibbotool', WibboToolComponent);
+        Vue.component('wibbotool-chatlogpub', ChatlogPubComponent);
 
-        WibboToolComponent;
-        HotelAlertComponent;
-        ChatlogPubComponent;
+        Vue.component('rpbox-buyitems', RpBoxBuyItemsComponent);
+        Vue.component('rpbox-inventory-choice', RpInventoryChoiceComponent);
+        Vue.component('rpbox-inventory', RpInventoryComponent);
+        Vue.component('rpbox-inventory-troc', RpInventoryTrocComponent);
+        Vue.component('rpstats', RpStatsComponent);
 
-        RoomOptionsComponent;
-        SettingsBoxComponent;
-        InfoBulleComponent;
+        Vue.component('room-options', RoomOptionsComponent);
+        Vue.component('settings-box', SettingsBoxComponent);
 
-        NotifAlertComponent;
-        NotifTopComponent;
+        Vue.component('notifalert', NotifAlertComponent);
+        Vue.component('notiftop', NotifTopComponent);
 
-        RpStatsComponent;
-        RpBoxBuyItemsComponent;
-        RpInventoryComponent;
-        RpInventoryChoiceComponent;
-        RpInventoryTrocComponent;
+        Vue.component('infobulle', InfoBulleComponent);
+        Vue.component('fullscreen', FullScreenComponent);
     }
 }

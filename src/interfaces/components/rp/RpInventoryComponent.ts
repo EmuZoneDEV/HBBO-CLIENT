@@ -2,37 +2,12 @@ import Vue from "vue";
 import Wibbo from "../../../Wibbo";
 import RpTrocStopComposer from "../../../networking/composers/troc/RpTrocStopComposer";
 import RpTrocAddItemComposer from "../../../networking/composers/troc/RpTrocAddItemComposer";
+import Html from './html/RpInventory.html';
 
-export default Vue.component("rpbox-inventory", {
-  template: `
-            <transition name="opacity">
-            <div class="box rp_inventory" v-if="data.connected && data.rp_mode" v-show="data.rpbox_inventory_open && data.in_room" v-bind:style="CenterBox" movebox>
-            <div class="box_head" v-draggable>
-                <div class="box_croix" v-on:click="Close"></div>
-                    Ton inventaire
-                </div>
-                <div class="box_body">
+export default Vue.extend({
 
-                <nav>
-                    <ul>
-                        <li class="bottom_lign"></li>
-                        <li v-for="nav in navs" :class="{active: nav.id == selected, nav_sub: true}" @click="Nav(nav.id)">{{nav.name}}</li>
-                    </ul>
-                </nav>
+  template: Html,
 
-                    <div class="scroll_bar">
-                        <ul>
-                            <li class="item_container" v-for="(item, index) in GetItems" v-infobulle="item.desc" v-on:click="ClickOnItem(item.id)">
-                                <img v-if="item.name != ''" v-bind:src="'items/'+ item.name +'.png'" class="item">
-                                <div class="item_count">{{item.count}}</div>
-                            </li>
-                        </ul>
-                    </div>
-                    <slot></slot>
-                </div>
-                </div>
-            </transition>
-            `,
   data: function() {
     return {
       data: Wibbo.GetStore(),

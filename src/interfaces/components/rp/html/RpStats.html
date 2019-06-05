@@ -1,0 +1,19 @@
+<div class="rp_stats" v-if="data.connected && data.rp_mode" v-show="data.in_room"
+    style="position:absolute;left: 10px; top: 45px;" movebox>
+    <div class="box rp_barre vie" v-infobulle="infobulle[0]" v-draggable>
+        <div class="barre_fond vie_fond"></div>
+        <div class="barre_pourcent vie_pourcent" v-bind:style="{ width: LifePourcent + '%' }"></div>
+        <span class="barre_text">{{data.rp_health}}/{{data.rp_maxhealh}}</span>
+    </div>
+    <div class="box rp_barre energy" v-infobulle="infobulle[1]" v-draggable>
+        <div class="barre_fond energy_fond"></div>
+        <div class="barre_pourcent energy_pourcent" v-bind:style="{ width: EnergyPourcent + '%' }"></div>
+        <span class="barre_text">{{data.rp_energy}}/100</span>
+    </div>
+
+    <span class="box rp_stat argent" v-infobulle="infobulle[2]" v-draggable>{{Monaie}}</span>
+    <span class="box rp_stat balle" v-infobulle="infobulle[3]" v-draggable>{{data.rp_munition}}</span>
+    <span class="box rp_stat level" v-infobulle="infobulle[4]" v-draggable>{{data.rp_level}}</span>
+
+    <span class="rp_stat sac_inventory" v-on:click="OpenCloseInventory" v-infobulle="infobulle[5]" v-draggable></span>
+</span>
