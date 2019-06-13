@@ -13,6 +13,9 @@ import Http from './util/Http';
 import GetRequest from './util/GetRequest';
 import Logger from './util/Logger';
 
+import Client from "./Client";
+declare let roomId: number;
+
 export default class Wibbo {
 
     private static _websocketManager: WebSocketManager | null;
@@ -26,12 +29,11 @@ export default class Wibbo {
     private static _pingInterval: number;
     private static _WSUrl: string;
     private static _userId: number;
+    private static _SSOTicket: string;
 
-    public static Init(UserId: number, WSUrl: string): void {
+    public static async Init(): Promise<void> {
 
-        Wibbo._userId = UserId;
         Wibbo._pingInterval = 0;
-        Wibbo._WSUrl = WSUrl;
 
         Wibbo._websocketManager = new WebSocketManager(Wibbo._WSUrl);
         Wibbo._packetManager = new PacketManager();
@@ -42,32 +44,60 @@ export default class Wibbo {
         Wibbo._soundManager = new SoundManager();
     }
 
+    public static async Auth(): Promise<void> {
+        let Id: string = GetRequest("id");
+        let CustumeId: string = Id == "" ? "" : "?id=" + Id;
+
+        try {
+        let response = await Http.get("getclientdata" + CustumeId);
+        
+        if (response.data.error) {
+            console.log(response.data.error);
+            return;
+        }
+
+        Wibbo._SSOTicket = response.data.SSOTicket;
+        Wibbo._WSUrl = response.data.WSUrl;
+        Wibbo._userId = response.data.id;
+
+        new Client(Wibbo._SSOTicket, roomId);
+        } catch(e) {
+            Logger.Log("[getclientdata]" + e);
+        }
+    }
+
+
     public static StartPing(): void {
         Wibbo._pingInterval = setInterval(function() { Wibbo.GetWebSocketManager().SendPacket(new PingComposer()); }, 30 * 1000);
     }
 
-    public static OnConnect(): void {
+    public static async OnConnect(): Promise<void> {
         let Id: string = GetRequest("id");
         let CustumeId: string = (Id == "") ? "" : "?id=" + Id;
 
-        Http.get("getssoticketweb" + CustumeId).then(function (response: any) {
+        try {
+            let response = await Http.get("getssoticketweb" + CustumeId);
 
             if(response.data.error)
             {
                 console.log(response.data.error);
-                Wibbo.GetWebSocketManager().close();
+                Wibbo.GetWebSocketManager().Close();
                 return;
             }
             let UserId = response.data.id;
             let SSOTicket = response.data.SSOTicketweb;
+        
 
             if(UserId != Wibbo._userId) {
                 Logger.Log("getssoticketweb: Id ne correspond pas (" + UserId + " / " + Wibbo._userId + ")"); //Low security
-                Wibbo.GetWebSocketManager().close();
+                Wibbo.GetWebSocketManager().Close();
                 return;
             }
             Wibbo.GetWebSocketManager().SendPacket(new SSOTicketComposer(SSOTicket));
-        });
+        } catch(e) {
+            Logger.Log("[getssoticketweb]" + e);
+            Wibbo.GetWebSocketManager().Close();
+        }
     }
 
     public static OnDisconnect(): void {

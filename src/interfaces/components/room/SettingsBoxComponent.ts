@@ -3,7 +3,7 @@ import Wibbo from '../../../Wibbo';
 import Html from './html/SettingsBox.html';
 
 export default Vue.extend({
-    
+
     template: Html,
 
     data: function () {
@@ -17,7 +17,5 @@ export default Vue.extend({
         Close: function () {
             Wibbo.GetStore().settings_box = false;
         }
-
-
     }
 });

@@ -9,8 +9,7 @@
         <div class="box_body">
             <h1 v-html="data.rp_item_choice.desc"></h1>
             <div class="preview_item">
-                <img v-if="data.rp_item_choice.name != ''" v-bind:src="'items/' + data.rp_item_choice.name + '.png'"
-                    class="item">
+                <img v-if="data.rp_item_choice.name != ''" v-bind:src="'items/' + data.rp_item_choice.name + '.png'" class="item">
             </div>
             <p>
                 <b>Objet(s) restant(s):</b> {{data.rp_item_choice.count}}

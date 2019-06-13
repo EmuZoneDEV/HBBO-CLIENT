@@ -12,7 +12,8 @@ enum ComposerHeader {
   RpTrocRemoveItem = 12,
   RpTrocAccepte = 13,
   RpTrocConfirme = 14,
-  RpTrocStop = 15
+  RpTrocStop = 15,
+  RpBotChoose = 16,
 }
 
 export default ComposerHeader;

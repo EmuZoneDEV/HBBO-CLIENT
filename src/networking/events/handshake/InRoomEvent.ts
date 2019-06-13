@@ -8,6 +8,7 @@ export default class InRoomEvent implements IPacketEvent {
         let InRoom: boolean = packet.PopBoolean();
         Wibbo.GetStore().in_room = InRoom;
         Wibbo.GetStore().rpbox_buyitems_open = false;
+        Wibbo.GetStore().rp_botchoose.splice(0, Wibbo.GetStore().rp_botchoose.length); //Clean
 
         Wibbo.GetSoundManager().stopSound();
     }

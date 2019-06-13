@@ -1,0 +1,9 @@
+<div class="bot_choose" v-if="data.connected && data.rp_mode" v-show="data.in_room && data.rp_botchoose.length > 0">
+    <ul>
+        <li v-for="choose in GetChoose" v-on:click="Click(choose.code)">
+            <img v-if="choose.look != ''" v-bind:src="'https://cdn.wibbo.me/habbo-imaging/avatarimage?figure=' + choose.look + '&size=s&headonly=true'" class="head">
+            <span class="name" v-if="choose.username != ''">{{ choose.username }} :</span>
+            <span class="message">{{ choose.message }}</span>
+        </li>
+    </ul>
+</div>

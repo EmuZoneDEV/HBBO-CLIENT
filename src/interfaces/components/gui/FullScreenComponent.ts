@@ -2,11 +2,13 @@ import Vue from 'vue';
 import Html from './html/FullScreen.html';
 
 export default Vue.extend({
-    
+
     template: Html,
 
     data: function () {
-        return;
+        return {
+            fullscreen: false
+        };
     },
 
     methods: {
@@ -15,6 +17,7 @@ export default Vue.extend({
             let elem: any = document.body;
 
             if (!document.fullscreenElement && !document.msFullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement) {
+                this.fullscreen = true;
                  if (elem.requestFullscreen) {
                     elem.requestFullscreen();
                 } else if (elem.mozRequestFullScreen) { /* Firefox */
@@ -25,6 +28,7 @@ export default Vue.extend({
                     elem.msRequestFullscreen();
                 }
             } else {
+                this.fullscreen = false;
                 if (document.exitFullscreen) {
                     document.exitFullscreen();
                   } else if (document.mozCancelFullScreen) { /* Firefox */

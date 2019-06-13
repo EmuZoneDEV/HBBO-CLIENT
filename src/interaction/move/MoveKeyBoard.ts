@@ -99,9 +99,7 @@ export default class MoveKeyBoard {
     if (oldX == this.X && oldY == this.Y) return;
 
     //Envoyer la nouvelle direction
-    Wibbo.GetWebSocketManager().SendPacket(
-      new MoveAvatarComposer(this.X, this.Y)
-    );
+    Wibbo.GetWebSocketManager().SendPacket(new MoveAvatarComposer(this.X, this.Y));
   }
 
   private OnDown(e: KeyboardEvent) {

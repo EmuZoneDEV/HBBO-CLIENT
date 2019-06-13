@@ -41,7 +41,7 @@ export default class WebSocketManager {
         Logger.Log("WebSocket Error");
     }
 
-    public close() {
+    public Close() {
         this._webSocket.close();
     }
 

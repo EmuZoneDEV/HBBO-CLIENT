@@ -1,13 +1,13 @@
 export default class ServerPacket {
 
-    private Id: number;
-    private Body: Array<ByteType>;
-    private ByteLength: number;
+    private _id: number;
+    private _body: Array<ByteType>;
+    private _byteLength: number;
     
     constructor(Header: number) {
-        this.Id = Header;
-        this.Body = new Array();
-        this.ByteLength = 0;
+        this._id = Header;
+        this._body = new Array();
+        this._byteLength = 0;
 
         this.AppendShort(Header);
     }
@@ -15,33 +15,33 @@ export default class ServerPacket {
     AppendString(s: string) {
         let text: string = unescape(encodeURIComponent(s));
 
-        this.Body.push(new ByteType(text.length, "Short"));
-        this.Body.push(new ByteType(text, "String"));
-        this.ByteLength += text.length + 2;
+        this._body.push(new ByteType(text.length, "Short"));
+        this._body.push(new ByteType(text, "String"));
+        this._byteLength += text.length + 2;
     }
 
     AppendInt(b: number) {
-        this.Body.push(new ByteType(b, "Int"));
-        this.ByteLength += 4;
+        this._body.push(new ByteType(b, "Int"));
+        this._byteLength += 4;
     }
 
     AppendShort(b: number) {
-        this.Body.push(new ByteType(b, "Short"));
-        this.ByteLength += 2;
+        this._body.push(new ByteType(b, "Short"));
+        this._byteLength += 2;
     }
 
     AppendBoolean(Bool: boolean) {
-        this.Body.push(new ByteType(Bool ? 1 : 0, "Byte"));
-        this.ByteLength += 1;
+        this._body.push(new ByteType(Bool ? 1 : 0, "Byte"));
+        this._byteLength += 1;
     }
 
     AppendBytes(b: number) {
-        this.Body.push(new ByteType(b, "Byte"));
-        this.ByteLength += 1;
+        this._body.push(new ByteType(b, "Byte"));
+        this._byteLength += 1;
     }
 
     GetBytes(): Uint8Array {
-        let TotalLengh: number = this.ByteLength + 4;
+        let TotalLengh: number = this._byteLength + 4;
 
         let buff: ArrayBuffer = new ArrayBuffer(TotalLengh);
         let bytearray: Uint8Array = new Uint8Array(buff);
@@ -54,7 +54,7 @@ export default class ServerPacket {
         bytearray[Pos++] = TotalLengh;
 
 
-        for (let element of this.Body) {
+        for (let element of this._body) {
             if (element.Type == "Byte") {
                 bytearray[Pos++] = <number>element.Content;
             }

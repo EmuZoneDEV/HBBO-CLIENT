@@ -21,6 +21,7 @@ enum EventHeader {
     SettingVolume = 20,
     PlaySound = 21,
     StopSound = 22,
+    BotChoose = 23,
 }
 
 export default EventHeader;

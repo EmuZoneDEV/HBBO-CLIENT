@@ -1,5 +1,4 @@
-<div class="rp_stats" v-if="data.connected && data.rp_mode" v-show="data.in_room"
-    style="position:absolute;left: 10px; top: 45px;" movebox>
+<div class="rp_stats" v-if="data.connected && data.rp_mode" v-show="data.in_room" style="position:absolute;left: 10px; top: 45px;" movebox>
     <div class="box rp_barre vie" v-infobulle="infobulle[0]" v-draggable>
         <div class="barre_fond vie_fond"></div>
         <div class="barre_pourcent vie_pourcent" v-bind:style="{ width: LifePourcent + '%' }"></div>

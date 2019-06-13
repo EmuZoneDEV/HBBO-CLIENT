@@ -51,4 +51,6 @@ export default class InterfaceStore {
     rp_troc_settings: { accepte: boolean, confirme: boolean } = { accepte: false, confirme: false };
     rp_troc_my_items: { id: number, name: string, desc: string, count: number}[] = [];
     rp_troc_target_items: { id: number, name: string, desc: string, count: number}[] = [];
+
+    rp_botchoose: { username: string, look: string, message: string, code: string }[] = [];
 }

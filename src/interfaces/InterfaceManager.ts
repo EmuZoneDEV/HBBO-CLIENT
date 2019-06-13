@@ -16,6 +16,7 @@ import RpInventoryChoiceComponent from './components/rp/RpInventoryChoiceCompone
 import NotifAlertComponent from './components/notif/NotifAlertComponent';
 import NotifTopComponent from './components/notif/NotifTopComponent';
 import RpInventoryTrocComponent from './components/rp/RpInventoryTrocComponent';
+import RpBotChooseComponent from './components/rp/RpBotChooseComponent';
 
 import DraggableDirective from './directives/DraggableDirective';
 import InfoBulleDirective from './directives/InfoBulleDirective';
@@ -50,6 +51,7 @@ export default class InterfaceManager {
         Vue.component('rpbox-inventory', RpInventoryComponent);
         Vue.component('rpbox-inventory-troc', RpInventoryTrocComponent);
         Vue.component('rpstats', RpStatsComponent);
+        Vue.component('rpchoose', RpBotChooseComponent);
 
         Vue.component('room-options', RoomOptionsComponent);
         Vue.component('settings-box', SettingsBoxComponent);

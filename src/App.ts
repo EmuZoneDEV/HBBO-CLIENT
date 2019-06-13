@@ -1,88 +1,48 @@
 import Wibbo from "./Wibbo";
-import Client from "./Client";
-import Http from "./util/Http";
-import GetRequest from "./util/GetRequest";
 
 import { polyfill } from "es6-promise";
-
 polyfill();
 
+Wibbo.Auth();
+
 document.addEventListener("visibilitychange", function() {
-  if (!document.hidden) {
-    if (document == null) return;
+    if (!document.hidden) {
+        if (document == null) return;
 
-    let html = document.querySelector("html");
+        let html = document.querySelector("html");
 
-    if (html == null) return;
+        if (html == null) return;
 
-    html.style.width = "99.9%";
+        html.style.width = "99.9%";
 
-    setTimeout(function() {
-      let html = document.querySelector("html");
-      if (html == null) return;
-      html.style.width = "100%";
-    }, 1000);
-  }
+        setTimeout(function() {
+            let html = document.querySelector("html");
+            if (html == null) return;
+            html.style.width = "100%";
+        }, 1000);
+    }
 });
 
-let Id: string = GetRequest("id");
-let WSUrl: string = "";
-let UserId = 0;
+(<any>window).FlashExternalInterface = {
+    legacyTrack: function(arg1: string, arg2: string, arg3: string) {},
+    listPlugins: function() {
+      return "";
+    }
+  };
 
-declare let roomId: number;
-
-let CustumeId: string = Id == "" ? "" : "?id=" + Id;
-
-Http.get("getclientdata" + CustumeId)
-  .then(function(response: any) {
-    if (response.data.error) {
-      console.log(response.data.error);
-      return;
+  (<any>window).FlashExternalInterface.listPlugins = function() {
+    let txt: string = "";
+    for (let i = 0; i < navigator.plugins.length; i++) {
+      txt += navigator.plugins[i].name + "|";
     }
 
-    let SSOTicket: string = response.data.SSOTicket;
-    WSUrl = response.data.WSUrl;
-    UserId = response.data.id;
+    return txt;
+  };
 
-    new Client(SSOTicket, roomId);
-  })
-  .catch(function(error: string) {
-    console.log("[GetClientData] Error: " + error);
-  });
+  (<any>window).FlashExternalInterface.legacyTrack = function(arg1: string, arg2: string, arg3: string) {
+    console.log("legacyTrack: " + arg1);
 
-declare global {
-  interface Window {
-    FlashExternalInterface: {
-      legacyTrack: (arg1: string, arg2: string, arg3: string) => void;
-      listPlugins: () => string;
-    };
-    open(): void;
-  }
-}
-window.FlashExternalInterface = {
-  legacyTrack: function(arg1: string, arg2: string, arg3: string) {},
-  listPlugins: function() {
-    return "";
-  }
-};
-
-window.FlashExternalInterface.listPlugins = function() {
-  let txt: string = "";
-  for (let i = 0; i < navigator.plugins.length; i++) {
-    txt += navigator.plugins[i].name + "|";
-  }
-
-  return txt;
-};
-
-window.FlashExternalInterface.legacyTrack = function(
-  arg1: string,
-  arg2: string,
-  arg3: string
-) {
-  console.log("legacyTrack: " + arg1);
-
-  if (arg1 == "authentication") {
-    Wibbo.Init(UserId, WSUrl);
-  }
-};
+    if (arg1 == "authentication") {
+      Wibbo.Init();
+    }
+  };

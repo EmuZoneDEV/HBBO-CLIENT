@@ -1,0 +1,26 @@
+.fullscreen {
+    position: absolute;
+    color: #fff;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(83,82,79,.8);
+    border-bottom: 2px solid #2e2e2c;
+    border-right: 2px solid #2e2e2c;
+    border-radius: 5px;
+    padding: 12px;
+    cursor: pointer;
+
+    .icon {
+        position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+        &.on {
+            @include sprite($fullscreen-on);
+        }
+        &.off {
+            @include sprite($fullscreen-off);
+        }
+    }
+
+}

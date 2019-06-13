@@ -1,6 +1,5 @@
 <transition name="opacity">
-    <div class="box rp_inventory" v-if="data.connected && data.rp_mode"
-        v-show="data.rpbox_inventory_open && data.in_room" v-bind:style="CenterBox" movebox>
+    <div class="box rp_inventory" v-if="data.connected && data.rp_mode" v-show="data.rpbox_inventory_open && data.in_room" v-bind:style="CenterBox" movebox>
         <div class="box_head" v-draggable>
             <div class="box_croix" v-on:click="Close"></div>
             Ton inventaire

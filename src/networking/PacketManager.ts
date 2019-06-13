@@ -26,6 +26,7 @@ import RpTrocUpdateItemsEvent from "./events/troc/RpTrocUpdateItemsEvent";
 import NotifAlertEvent from "./events/notif/NotifAlertEvent";
 import NotifTopEvent from "./events/notif/NotifTopEvent";
 import NotifTopInitEvent from "./events/notif/NotifTopInitEvent";
+import BotChooseEvent from "./events/roleplay/BotChooseEvent";
 
 export default class PacketManager {
 
@@ -62,6 +63,7 @@ export default class PacketManager {
         this._incomingPackets[EventHeader.RpTrocAccepte] = new RpTrocAccepteEvent();
         this._incomingPackets[EventHeader.RpTrocConfirme] = new RpTrocConfirmeEvent();
         this._incomingPackets[EventHeader.RpTrocUpdateItems] = new RpTrocUpdateItemsEvent();
+        this._incomingPackets[EventHeader.BotChoose] = new BotChooseEvent();
     }
 
     TryExecutePacket(data: ArrayBuffer) {
